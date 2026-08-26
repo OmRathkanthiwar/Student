@@ -7,34 +7,55 @@
 
 <style>
     body{
-        font-family: Arial, sans-serif;
-        background:#f4f4f4;
-        display:flex;
-        justify-content:center;
-        margin-top:50px;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display:flex;
+    justify-content:center;
+    margin-top:50px;
+    min-height:100vh;
     }
 
     .container{
-        width:400px;
-        background:white;
-        padding:20px;
-        border-radius:8px;
-        box-shadow:0 0 10px rgba(0,0,0,0.2);
-    }
+    width:400px;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
 
     h2{
-        text-align:center;
-    }
+    text-align:center;
+    color:#5a3fa3;
+}
 
-    input{
-        width:70%;
-        padding:8px;
-    }
+button{
+    padding:8px 12px;
+    cursor:pointer;
+    border:none;
+    border-radius:5px;
+    background:#667eea;
+    color:white;
+}
 
-    button{
-        padding:8px 12px;
-        cursor:pointer;
-    }
+button:hover{
+    background:#5a67d8;
+}
+
+li{
+    background:#f0f2ff;
+    margin:8px 0;
+    padding:10px;
+    border-radius:5px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+#taskCount{
+    text-align:center;
+    color:#666;
+    font-weight:bold;
+}
 
     ul{
         list-style:none;
@@ -42,15 +63,7 @@
         margin-top:20px;
     }
 
-    li{
-        background:#eee;
-        margin:8px 0;
-        padding:8px;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-    }
-
+   
     .completed{
         text-decoration:line-through;
         color:gray;
@@ -59,6 +72,12 @@
     .actions button{
         margin-left:5px;
     }
+
+    #taskCount{
+    text-align:center;
+    color:#666;
+    font-weight:bold;
+}
 </style>
 </head>
 
@@ -66,6 +85,7 @@
 
 <div class="container">
     <h2>Student Task Manager</h2>
+    <p id="taskCount">Total Tasks: 0</p>
 
     <input type="text" id="taskInput" placeholder="Enter task">
     <button onclick="addTask()">Add</button>
@@ -102,6 +122,7 @@ function addTask(){
 
     del.onclick=function(){
         li.remove();
+        updateTaskCount();
     }
 
     actions.appendChild(complete);
@@ -113,6 +134,12 @@ function addTask(){
     document.getElementById("taskList").appendChild(li);
 
     input.value="";
+    updateTaskCount();
+}
+
+function updateTaskCount(){
+    let count=document.querySelectorAll("#taskList li").length;
+    document.getElementById("taskCount").innerText="Total Tasks: "+count;
 }
 
 </script>
