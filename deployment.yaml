@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stu-name
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stu-name
+  template:
+    metadata:
+      labels:
+        app: stu-name
+    spec:
+      containers:
+        - name: stu-name-1
+          image: stu_name_1:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
